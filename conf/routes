@@ -15,5 +15,10 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/{<.+>filepath}                  Static.Serve("public")
 
+# Challenges
+POST    /challenge/create                           Challenges.Create
+GET     /challenge/{challengeId}                    Challenges.Get
+GET     /challenges/{userId}                        Challenges.GetAll
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
