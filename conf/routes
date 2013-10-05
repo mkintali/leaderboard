@@ -5,6 +5,9 @@
 module:testrunner
 
 GET     /                                       App.Index
+GET     /leaderboards/view                      LeaderBoards.ViewLeaderBoards
+GET     /leaderboards/add                       LeaderBoards.AddLeaderBoard
+GET     /leaderboards/insert                    LeaderBoards.InsertLeaderBoard
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

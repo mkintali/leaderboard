@@ -16,33 +16,31 @@ func (_ tApp) Index(
 }
 
 
-type tTestRunner struct {}
-var TestRunner tTestRunner
+type tLeaderBoards struct {}
+var LeaderBoards tLeaderBoards
 
 
-func (_ tTestRunner) Index(
+func (_ tLeaderBoards) ViewLeaderBoards(
 		) string {
 	args := make(map[string]string)
 	
-	return revel.MainRouter.Reverse("TestRunner.Index", args).Url
+	return revel.MainRouter.Reverse("LeaderBoards.ViewLeaderBoards", args).Url
 }
 
-func (_ tTestRunner) Run(
-		suite string,
-		test string,
+func (_ tLeaderBoards) AddLeaderBoard(
 		) string {
 	args := make(map[string]string)
 	
-	revel.Unbind(args, "suite", suite)
-	revel.Unbind(args, "test", test)
-	return revel.MainRouter.Reverse("TestRunner.Run", args).Url
+	return revel.MainRouter.Reverse("LeaderBoards.AddLeaderBoard", args).Url
 }
 
-func (_ tTestRunner) List(
+func (_ tLeaderBoards) InsertLeaderBoard(
+		newLeaderBoard string,
 		) string {
 	args := make(map[string]string)
 	
-	return revel.MainRouter.Reverse("TestRunner.List", args).Url
+	revel.Unbind(args, "newLeaderBoard", newLeaderBoard)
+	return revel.MainRouter.Reverse("LeaderBoards.InsertLeaderBoard", args).Url
 }
 
 
@@ -72,6 +70,36 @@ func (_ tStatic) ServeModule(
 	revel.Unbind(args, "prefix", prefix)
 	revel.Unbind(args, "filepath", filepath)
 	return revel.MainRouter.Reverse("Static.ServeModule", args).Url
+}
+
+
+type tTestRunner struct {}
+var TestRunner tTestRunner
+
+
+func (_ tTestRunner) Index(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("TestRunner.Index", args).Url
+}
+
+func (_ tTestRunner) Run(
+		suite string,
+		test string,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "suite", suite)
+	revel.Unbind(args, "test", test)
+	return revel.MainRouter.Reverse("TestRunner.Run", args).Url
+}
+
+func (_ tTestRunner) List(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("TestRunner.List", args).Url
 }
 
 
