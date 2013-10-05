@@ -5,9 +5,8 @@
 module:testrunner
 
 GET     /                                       App.Index
-GET     /leaderboards/view                      LeaderBoards.ViewLeaderBoards
-GET     /leaderboards/add                       LeaderBoards.AddLeaderBoard
-GET     /leaderboards/insert                    LeaderBoards.InsertLeaderBoard
+GET     /leaderboards/view                      LeaderBoards.ViewBoards
+GET     /leaderboards/add                       LeaderBoards.AddBoard
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -16,9 +15,9 @@ GET     /favicon.ico                            404
 GET     /public/{<.+>filepath}                  Static.Serve("public")
 
 # Challenges
-POST    /challenge/create                           Challenges.Create
-GET     /challenge/{challengeId}                    Challenges.Get
-GET     /challenges/{userId}                        Challenges.GetAll
+POST    /challenge/create                       Challenges.Create
+GET     /challenge/{challengeId}                Challenges.Get
+GET     /challenges/{userId}                    Challenges.GetAll
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
