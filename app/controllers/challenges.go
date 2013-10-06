@@ -4,20 +4,11 @@ import (
 	"fmt"
 	"github.com/golang/glog"
 	"github.com/robfig/revel"
+	"leaderboard/app/models"
 )
 
 type Challenges struct {
 	*revel.Controller
-}
-
-type Challenge struct {
-	Id            int64  `db:"id"`
-	LeaderBoardId int64  `db:"leaderBoard_id"`
-	ToUserId      int64  `db:"toUser_id"`
-	FromUserId    int64  `db:"fromUser_id"`
-	Message       string `db:"message"`
-	WinnerId      int64  `db:"winner_id"`
-	LoserId       int64  `db:"loser_id"`
 }
 
 /**
@@ -29,7 +20,7 @@ type Challenge struct {
  * @param {string} message The smack talk message
  */
 func (c Challenges) Create(leaderBoardId int64, fromUserId int64, toUserId int64, msg string) revel.Result {
-	challenge := &Challenge{
+	challenge := &models.Challenge{
 		LeaderBoardId: leaderBoardId,
 		ToUserId:      toUserId,
 		FromUserId:    fromUserId,
@@ -50,7 +41,7 @@ func (c Challenges) Create(leaderBoardId int64, fromUserId int64, toUserId int64
  * @param {int64} id The ID of the challenge to retrieve
  */
 func (c Challenges) Get(challengeId int64) revel.Result {
-	challenge, err := Dbm.Get(Challenge{}, challengeId)
+	challenge, err := Dbm.Get(models.Challenge{}, challengeId)
 	if err != nil {
 		glog.Error(err)
 	}
@@ -63,7 +54,7 @@ func (c Challenges) Get(challengeId int64) revel.Result {
  * @param {int64} userId The user id to fetch the challenges for
  */
 func (c Challenges) GetAll(userId int64) revel.Result {
-	var challenges []*Challenge
+	var challenges []*models.Challenge
 	_, err := Dbm.Select(&challenges, "SELECT * FROM challenges WHERE toUser_id = ? OR fromUser_id = ?", userId, userId)
 
 	if err != nil {

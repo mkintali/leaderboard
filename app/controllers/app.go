@@ -23,7 +23,7 @@ func Init() {
 	db.Init()
 	Dbm = &gorp.DbMap{Db: db.Db, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
 	Dbm.AddTableWithName(models.Leaderboard{}, "leaderboards")
-	Dbm.AddTableWithName(Challenge{}, "challenges").SetKeys(true, "id")
+	Dbm.AddTableWithName(models.Challenge{}, "challenges").SetKeys(true, "id")
 }
 
 func init() {
