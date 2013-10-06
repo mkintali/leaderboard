@@ -1,5 +1,5 @@
 {{set . "title" "LeaderBoards"}}
 
 {{range .boards}}
-	<div class="board-title">{{.Name}}</div>
+	<a href="/leaderboards/{{.Id}}" class="board-title">{{.Name}}</a>
 {{end}}
