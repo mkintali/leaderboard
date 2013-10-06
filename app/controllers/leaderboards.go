@@ -4,6 +4,7 @@ import (
 	"github.com/golang/glog"
 	"github.com/robfig/revel"
 	"leaderboard/app/models"
+	"leaderboard/app/routes"
 )
 
 type LeaderBoards struct {
@@ -34,4 +35,15 @@ func (c LeaderBoards) ViewBoards() revel.Result {
 
 func (c LeaderBoards) AddBoard() revel.Result {
 	return c.RenderTemplate("Leaderboards/addleaderboard.html")
+}
+
+func (c LeaderBoards) InsertBoard(name string) revel.Result {
+	board := &models.Leaderboard{
+		Name: name,
+	}
+	err := Dbm.Insert(board)
+	if err != nil {
+		glog.Errorf("Error creating a new leaderboard", err)
+	}
+	return c.Redirect(routes.LeaderBoards.ViewBoards())
 }
