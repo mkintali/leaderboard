@@ -14,3 +14,11 @@ type Challenge struct {
 	WinnerId      int64  `db:"winner_id"`
 	LoserId       int64  `db:"loser_id"`
 }
+
+type User struct {
+	Id        int64
+	Active    bool
+	Email     string
+	FirstName string
+	LastName  string
+}

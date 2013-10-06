@@ -22,8 +22,9 @@ func (c App) Index() revel.Result {
 func Init() {
 	db.Init()
 	Dbm = &gorp.DbMap{Db: db.Db, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
-	Dbm.AddTableWithName(models.Leaderboard{}, "leaderboards")
+	Dbm.AddTableWithName(models.Leaderboard{}, "leaderboards").SetKeys(true, "id")
 	Dbm.AddTableWithName(models.Challenge{}, "challenges").SetKeys(true, "id")
+	Dbm.AddTableWithName(models.User{}, "alpha.alpha_employees").SetKeys(true, "Id")
 }
 
 func init() {

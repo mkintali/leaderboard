@@ -1,3 +1,9 @@
 {{set . "title" .board.Name}}
 
 Name: {{.board.Name}}
+{{range .users}}
+  <div class="board-user">
+  	{{.FirstName}} {{.LastName}}
+  </div><br>
+
+{{end}}
