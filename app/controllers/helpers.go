@@ -18,5 +18,6 @@ func GetAllUsers() []*models.User {
 	if err != nil {
 		glog.Error(err)
 	}
+
 	return users
 }

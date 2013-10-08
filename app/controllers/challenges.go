@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/golang/glog"
 	"github.com/robfig/revel"
 	"leaderboard/app/models"
@@ -60,8 +59,6 @@ func (c Challenges) GetAll(userId int64) revel.Result {
 	if err != nil {
 		glog.Error(err)
 	}
-
-	fmt.Println(challenges)
 
 	return c.RenderJson(challenges)
 }

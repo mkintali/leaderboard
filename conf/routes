@@ -9,6 +9,7 @@ GET     /leaderboards/view                      LeaderBoards.ViewBoards
 GET     /leaderboards/add                       LeaderBoards.AddBoard
 POST    /leaderboards/insert					LeaderBoards.InsertBoard
 GET     /leaderboards/{boardId}					LeaderBoards.ViewBoard
+POST 	/leaderboards/{boardId}/join/{userId}	LeaderBoards.JoinBoard
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

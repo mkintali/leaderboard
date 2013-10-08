@@ -25,6 +25,7 @@ func Init() {
 	Dbm.AddTableWithName(models.Leaderboard{}, "leaderboards").SetKeys(true, "id")
 	Dbm.AddTableWithName(models.Challenge{}, "challenges").SetKeys(true, "id")
 	Dbm.AddTableWithName(models.User{}, "alpha.alpha_employees").SetKeys(true, "Id")
+	Dbm.AddTableWithName(models.LeaderboardPlayer{}, "leaderboard_players")
 }
 
 func init() {

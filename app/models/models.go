@@ -22,3 +22,8 @@ type User struct {
 	FirstName string
 	LastName  string
 }
+
+type LeaderboardPlayer struct {
+	BoardId int64
+	UserId  int64
+}
