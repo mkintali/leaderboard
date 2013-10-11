@@ -5,6 +5,7 @@ import (
 	"github.com/robfig/revel"
 	db "github.com/robfig/revel/modules/db/app"
 	"leaderboard/app/models"
+	"leaderboard/app/routes"
 )
 
 var (
@@ -19,6 +20,14 @@ func (c App) Index() revel.Result {
 	return c.Render()
 }
 
+func checkUser(c *revel.Controller) revel.Result {
+	if len(c.Session["userId"]) == 0 {
+		c.Flash.Error("You must be logged in to use the leaderboard.")
+		return c.Redirect(routes.Users.Login())
+	}
+	return nil
+}
+
 func Init() {
 	db.Init()
 	Dbm = &gorp.DbMap{Db: db.Db, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
@@ -28,6 +37,8 @@ func Init() {
 	Dbm.AddTableWithName(models.LeaderboardPlayer{}, "leaderboard_players")
 }
 
-func init() {
+func (c App) init() {
+	revel.InterceptFunc(checkUser, revel.BEFORE, nil)
 	revel.OnAppStart(Init)
+
 }

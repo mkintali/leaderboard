@@ -14,26 +14,10 @@ type Users struct {
 }
 
 /**
- * Check to see if a user session exists
- * @returns {bool} true if the user is logged in
- */
-func (c Users) IsLoggedIn() bool {
-	if len(c.Session["userId"]) == 0 {
-		c.Flash.Error("You must be logged in to use the leaderboard.")
-		return false
-	}
-
-	return true
-}
-
-/**
  * Render the Login View, but redirect to dashboard if already
  * logged in
  */
 func (c Users) Login() revel.Result {
-	if c.IsLoggedIn() {
-		return c.Redirect(routes.Users.ViewDashboard())
-	}
 	return c.RenderTemplate("Users/login.html")
 }
 
@@ -63,7 +47,12 @@ func (c Users) Auth(email string) revel.Result {
 		return c.Redirect(routes.Users.Login())
 	}
 
+	// TODO(billy) can we make this one var?
 	c.Session["userId"] = strconv.FormatInt(users[0].Id, 10)
+	c.Session["userEmail"] = users[0].Email
+	c.Session["userFirstName"] = users[0].FirstName
+	c.Session["userLastName"] = users[0].LastName
+
 	return c.Redirect(routes.Users.ViewDashboard())
 }
 
@@ -72,8 +61,5 @@ func (c Users) Auth(email string) revel.Result {
  * login page if they are not already logged in
  */
 func (c Users) ViewDashboard() revel.Result {
-	if c.IsLoggedIn() {
-		return c.RenderTemplate("Users/dashboard.html")
-	}
-	return c.Redirect(routes.Users.Login())
+	return c.RenderTemplate("Users/dashboard.html")
 }

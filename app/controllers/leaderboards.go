@@ -38,14 +38,12 @@ func (c LeaderBoards) ViewBoard(boardId int64) revel.Result {
 }
 
 func (c LeaderBoards) ViewBoards() revel.Result {
-	users := GetAllUsers()
 	var boards []*models.Leaderboard
 	_, err := Dbm.Select(&boards, `select * from leaderboard.leaderboards`)
 	if err != nil {
 		glog.Error(err)
 	}
 	c.RenderArgs["boards"] = boards
-	c.RenderArgs["users"] = users
 
 	return c.RenderTemplate("Leaderboards/leaderboards.html")
 }
