@@ -21,6 +21,10 @@ func (c App) Index() revel.Result {
 }
 
 func checkUser(c *revel.Controller) revel.Result {
+	if c.Request.URL.String() == routes.Users.Login() {
+		return nil
+	}
+
 	if len(c.Session["userId"]) == 0 {
 		c.Flash.Error("You must be logged in to use the leaderboard.")
 		return c.Redirect(routes.Users.Login())
@@ -37,8 +41,7 @@ func Init() {
 	Dbm.AddTableWithName(models.LeaderboardPlayer{}, "leaderboard_players")
 }
 
-func (c App) init() {
-	revel.InterceptFunc(checkUser, revel.BEFORE, nil)
+func init() {
+	revel.InterceptFunc(checkUser, revel.BEFORE, &Users{})
 	revel.OnAppStart(Init)
-
 }
