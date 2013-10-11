@@ -16,11 +16,11 @@ type Challenge struct {
 }
 
 type User struct {
-	Id        int64
-	Active    bool
-	Email     string
-	FirstName string
-	LastName  string
+	Id        int64  `db:"id"`
+	Active    bool   `db:"active"`
+	Email     string `db:"email"`
+	FirstName string `db:"firstname"`
+	LastName  string `db:"lastname"`
 }
 
 type LeaderboardPlayer struct {

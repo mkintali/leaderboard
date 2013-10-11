@@ -7,9 +7,14 @@ module:testrunner
 GET     /                                       App.Index
 GET     /leaderboards/view                      LeaderBoards.ViewBoards
 GET     /leaderboards/add                       LeaderBoards.AddBoard
-POST    /leaderboards/insert					LeaderBoards.InsertBoard
-GET     /leaderboards/{boardId}					LeaderBoards.ViewBoard
-POST 	/leaderboards/{boardId}/join/{userId}	LeaderBoards.JoinBoard
+POST    /leaderboards/insert                    LeaderBoards.InsertBoard
+GET     /leaderboards/{boardId}                 LeaderBoards.ViewBoard
+POST    /leaderboards/{boardId}/join/{userId}   LeaderBoards.JoinBoard
+
+GET    /users/login                             Users.Login
+GET    /users/dashboard                         Users.ViewDashboard
+POST   /users/auth                              Users.Auth
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
