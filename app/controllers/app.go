@@ -42,6 +42,6 @@ func Init() {
 }
 
 func init() {
-	revel.InterceptFunc(checkUser, revel.BEFORE, &Users{})
+	revel.InterceptFunc(checkUser, revel.BEFORE, &revel.Controller{})
 	revel.OnAppStart(Init)
 }
