@@ -18,7 +18,7 @@ type Users struct {
  * @returns {bool} true if the user is logged in
  */
 func (c Users) IsLoggedIn() bool {
-	if len(c.Session["user"]) == 0 {
+	if len(c.Session["userId"]) == 0 {
 		c.Flash.Error("You must be logged in to use the leaderboard.")
 		return false
 	}
