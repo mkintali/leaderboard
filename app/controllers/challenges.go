@@ -52,7 +52,7 @@ func (c Challenges) Get(challengeId int64) revel.Result {
  * Get all the challenges for a user ID
  * @param {int64} userId The user id to fetch the challenges for
  */
-func (c Challenges) GetAll(userId int64) revel.Result {
+func (c Challenges) GetUserChallenges(userId int64) revel.Result {
 	var challenges []*models.Challenge
 	_, err := Dbm.Select(&challenges, "SELECT * FROM challenges WHERE toUser_id = ? OR fromUser_id = ?", userId, userId)
 
@@ -60,7 +60,8 @@ func (c Challenges) GetAll(userId int64) revel.Result {
 		glog.Error(err)
 	}
 
-	return c.RenderJson(challenges)
+	c.RenderArgs["userChallenges"] = challenges
+	return c.RenderTemplate("Users/_userChallenges.html")
 }
 
 /**

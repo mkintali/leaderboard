@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <title>{{.title}}</title>
@@ -15,7 +14,22 @@
     {{end}}
   </head>
   <body>
-  <header>
-
-  </header>
-  {{template "flash.html" .}}
+  {{if .session}}
+    <header>
+      Welcome {{.session.userFirstName}} {{.session.userLastName}} 
+      <a href="/users/logout" class="no-ajax">Logout</a>
+      <ul>
+        <li class="js-dropdown">
+          Challenges
+          <ul id="user-challenges" style="display:none">
+            <li>You have no challenges</li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+  {{end}}
+  <section>
+    <article>
+      <header id="alerts">
+        {{template "flash.html" .}}
+      </header>

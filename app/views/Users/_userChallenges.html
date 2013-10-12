@@ -1,0 +1,7 @@
+{{if .userChallenges}}
+  <ul>
+  {{range $challenge := .userChallenges}}
+    <li>$challenge.firstName <span class="js-accept-challenge">+</span> <span class="js-decline-challenge"></li>
+  {{end}}
+  </ul>
+{{end}}

@@ -1,0 +1,5 @@
+<ul id="leaderboards">
+	{{range .boards}}
+		<li><a href="/leaderboards/{{.Id}}" class="board-title">{{.Name}}</a></li>
+	{{end}}
+</ul>

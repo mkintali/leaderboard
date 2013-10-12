@@ -1,8 +1,6 @@
-{{set . "title" "User Login"}}
-{{template "header.html" .}}
+{{template "flash.html" .}}
 <form action="/users/auth" method="POST">
   <label>Yext E-mail:</label>
   <input type="text" name="email">
   <input type="submit">
 </form>
-{{template "footer.html" .}}

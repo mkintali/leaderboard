@@ -1,2 +1,10 @@
+    </article>
+  </section>
+  {{if .session}}
+ 	 <script type="text/javascript" src="/public/js/leaderboard.js"></script>
+ 	 <script type="text/javascript">
+ 		var leaderboard = new Leaderboard({{.session.userId}});
+ 	 </script>
+  {{end}}
   </body>
 </html>

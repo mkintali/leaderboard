@@ -29,6 +29,8 @@ func checkUser(c *revel.Controller) revel.Result {
 		c.Flash.Error("You must be logged in to use the leaderboard.")
 		return c.Redirect(routes.Users.Login())
 	}
+
+	c.RenderArgs["session"] = c.Session
 	return nil
 }
 
@@ -42,6 +44,6 @@ func Init() {
 }
 
 func init() {
-	revel.InterceptFunc(checkUser, revel.BEFORE, &revel.Controller{})
+	revel.InterceptFunc(checkUser, revel.AFTER, &revel.Controller{})
 	revel.OnAppStart(Init)
 }

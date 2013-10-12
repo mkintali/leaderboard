@@ -12,7 +12,7 @@ GET     /leaderboards/{boardId}                 LeaderBoards.ViewBoard
 POST    /leaderboards/{boardId}/join/{userId}   LeaderBoards.JoinBoard
 
 GET    /users/login                             Users.Login
-GET    /users/dashboard                         Users.ViewDashboard
+GET    /users/logout                            Users.Logout
 POST   /users/auth                              Users.Auth
 
 
@@ -25,7 +25,7 @@ GET     /public/{<.+>filepath}                  Static.Serve("public")
 # Challenges
 POST    /challenge/create                       Challenges.Create
 GET     /challenge/{challengeId}                Challenges.Get
-GET     /challenges/{userId}                    Challenges.GetAll
+GET     /challenges/{userId}                    Challenges.GetUserChallenges
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

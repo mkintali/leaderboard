@@ -21,6 +21,14 @@ func (c Users) Login() revel.Result {
 	return c.RenderTemplate("Users/login.html")
 }
 
+func (c Users) Logout() revel.Result {
+	for k := range c.Session {
+		delete(c.Session, k)
+	}
+
+	return c.Redirect(routes.Users.Login())
+}
+
 /**
  * Handle post request for login and authetication
  * Redirect to user view dashboard if successful
@@ -53,13 +61,5 @@ func (c Users) Auth(email string) revel.Result {
 	c.Session["userFirstName"] = users[0].FirstName
 	c.Session["userLastName"] = users[0].LastName
 
-	return c.Redirect(routes.Users.ViewDashboard())
-}
-
-/**
- * Renders the Dashboard view and redirects user to
- * login page if they are not already logged in
- */
-func (c Users) ViewDashboard() revel.Result {
-	return c.RenderTemplate("Users/dashboard.html")
+	return c.Redirect(routes.App.Index())
 }

@@ -34,7 +34,7 @@ func (c LeaderBoards) ViewBoard(boardId int64) revel.Result {
 	c.RenderArgs["board"] = boards[0]
 	c.RenderArgs["players"] = players
 
-	return c.RenderTemplate("Leaderboards/leaderboard.html")
+	return c.RenderTemplate("Leaderboards/_viewLeaderboard.html")
 }
 
 func (c LeaderBoards) ViewBoards() revel.Result {
@@ -45,7 +45,7 @@ func (c LeaderBoards) ViewBoards() revel.Result {
 	}
 	c.RenderArgs["boards"] = boards
 
-	return c.RenderTemplate("Leaderboards/leaderboards.html")
+	return c.RenderTemplate("Leaderboards/_allLeaderboards.html")
 }
 
 func (c LeaderBoards) AddBoard() revel.Result {
