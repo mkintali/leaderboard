@@ -1,6 +1,0 @@
-{{set . "title" "LeaderBoards"}}
-{{template "header.html" .}}
-{{range .boards}}
-	<a href="/leaderboards/{{.Id}}" class="board-title">{{.Name}}</a>
-{{end}}
-{{template "footer.html" .}}

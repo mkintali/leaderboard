@@ -13,6 +13,7 @@
 
     this.restorePageFromUrl();
     this.bindGotoPage();
+    this.bindChallengeUser();
     this.bindUserChallenges();
     this.getUserChallenges();
   };
@@ -108,6 +109,26 @@
     })
     .fail(function() {
       self.gotoPage('leaderboards/view');
+    });
+  };
+
+  Leaderboard.prototype.bindChallengeUser = function() {
+    $(document).on('click', '.js-challenge', function() {
+      var $self = $(this);
+
+      var boardId = $self.data('board-id'),
+          toUserId = $self.data('user-id'),
+          fromUserId = $('#from-user-id').val();
+
+      $.post('/challenge/create', 
+        { 
+          leaderBoardId : boardId, 
+          toUserId : toUserId, 
+          fromUserId : fromUserId
+        }, 
+        function(data) {
+          alert(data);
+      });
     });
   }
 

@@ -1,8 +1,9 @@
 {{$board := .board}}
 <h2>Game: {{$board.Name}}</h2>
 
-<h3>Your Employee Id:</h3>
 <input id="from-user-id" type="hidden" name="userId" value="{{.session.userId}}">
+
+<a href="/leaderboards/{{$board.Id}}/join/{{.session.userId}}">Join Board</a>
 
 <h3>Players:</h3>
 {{range .players}}
@@ -13,23 +14,3 @@
     </li>
   </ul>
 {{end}}
-
-<script type="text/javascript">
-  $(document).on('click', '.js-challenge', function() {
-    var $self = $(this);
-
-    var boardId = $self.data('board-id'),
-      toUserId = $self.data('user-id'),
-      fromUserId = $('#from-user-id').val();
-
-    $.post('/challenge/create', 
-      { 
-        boardId : boardId, 
-        toUserId : toUserId, 
-        fromUserId : fromUserId
-      }, 
-      function(data) {
-        alert(data);
-    });
-  });
-</script>
