@@ -3,14 +3,14 @@
 
 <input id="from-user-id" type="hidden" name="userId" value="{{.session.userId}}">
 
-<a href="/leaderboards/{{$board.Id}}/join/{{.session.userId}}">Join Board</a>
+<span class="btn js-join-board" data-board-id="{{$board.Id}}" data-user-id="{{.session.userId}}">Join Board</span>
 
 <h3>Players:</h3>
 {{range .players}}
   <ul class="board-users">
     <li>
       {{.FirstName}} {{.LastName}}
-      <a class="js-challenge" data-board-id="{{$board.Id}}" data-user-id="{{.Id}}">Challenge</a>
+      <span class="btn js-challenge" data-board-id="{{$board.Id}}" data-user-id="{{.Id}}">Challenge</span>
     </li>
   </ul>
 {{end}}

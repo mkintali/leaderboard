@@ -9,7 +9,7 @@ GET     /leaderboards/view                      LeaderBoards.ViewBoards
 GET     /leaderboards/add                       LeaderBoards.AddBoard
 POST    /leaderboards/insert                    LeaderBoards.InsertBoard
 GET     /leaderboards/{boardId}                 LeaderBoards.ViewBoard
-GET     /leaderboards/{boardId}/join/{userId}   LeaderBoards.JoinBoard
+POST    /leaderboards/join                      LeaderBoards.JoinBoard
 
 GET    /users/login                             Users.Login
 GET    /users/logout                            Users.Logout

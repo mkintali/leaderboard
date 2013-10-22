@@ -74,5 +74,5 @@ func (c LeaderBoards) JoinBoard(boardId int64, userId int64) revel.Result {
 		glog.Error("Error joining board", err)
 	}
 
-	return c.Redirect(routes.LeaderBoards.ViewBoard(boardId))
+	return c.RenderJson(boardPlayer)
 }

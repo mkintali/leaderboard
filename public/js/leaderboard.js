@@ -13,7 +13,10 @@
 
     this.restorePageFromUrl();
     this.bindGotoPage();
+
     this.bindChallengeUser();
+    this.bindJoinBoard();
+
     this.bindUserChallenges();
     this.getUserChallenges();
   };
@@ -112,6 +115,9 @@
     });
   };
 
+  /**
+   * Challenge a user via AJAX
+   */
   Leaderboard.prototype.bindChallengeUser = function() {
     $(document).on('click', '.js-challenge', function() {
       var $self = $(this);
@@ -127,9 +133,24 @@
           fromUserId : fromUserId
         }, 
         function(data) {
-          alert(data);
+        //  alert(data);
       });
     });
-  }
+  };
+
+  /**
+   * Join a board via AJAX
+   */
+  Leaderboard.prototype.bindJoinBoard = function() {
+    $(document).on('click', '.js-join-board', function() {
+      var $self = $(this),
+          boardId = $self.data('board-id'),
+          userId = $self.data('user-id');
+
+      $.post('/leaderboards/join', { boardId: boardId, userId: userId }, function() {
+        location.reload();
+      });
+    });
+  };
 
 })(window, document)
