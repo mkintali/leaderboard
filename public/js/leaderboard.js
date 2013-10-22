@@ -119,6 +119,8 @@
    * Challenge a user via AJAX
    */
   Leaderboard.prototype.bindChallengeUser = function() {
+    var that = this;
+
     $(document).on('click', '.js-challenge', function() {
       var $self = $(this);
 
@@ -133,7 +135,7 @@
           fromUserId : fromUserId
         }, 
         function(data) {
-        //  alert(data);
+          that.showNoticeMsg("Challenge sent successfully!")
       });
     });
   };
@@ -151,6 +153,18 @@
         location.reload();
       });
     });
+  };
+
+  Leaderboard.prototype.showNoticeMsg = function(msg){
+    msg = msg || undefined;
+
+    if (msg) {
+      $('#notices')
+        .text(msg)
+        .slideDown(300)
+        .delay(1500)
+        .slideUp(300)
+    }
   };
 
 })(window, document)
